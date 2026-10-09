@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ANGELBERTFOLIO</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:#07111f;color:#fff;line-height:1.6}
+header{position:sticky;top:0;z-index:20;height:72px;padding:0 7%;display:flex;align-items:center;justify-content:space-between;background:rgba(7,17,31,.96);border-bottom:1px solid #20334d}
+.logo{color:#fff;text-decoration:none;font-weight:800;letter-spacing:2px} .logo b{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;margin-right:8px;border:1px solid #62e5ff;border-radius:10px;color:#62e5ff}
+nav{display:flex;gap:25px} nav a{color:#aebbd0;text-decoration:none;font-size:13px;font-weight:bold} nav a:hover{color:#62e5ff}
+.hero{max-width:1200px;min-height:calc(100vh - 72px);margin:auto;padding:70px 6%;display:grid;grid-template-columns:1.1fr .9fr;gap:55px;align-items:center}
+.tag{color:#62e5ff;font-size:10px;font-weight:bold;letter-spacing:3px}
+h1{font-size:clamp(48px,7vw,82px);line-height:.98;letter-spacing:-4px;margin:18px 0} h1 span,h2 span{color:#62e5ff}
+.hero p{color:#9aaac0;font-size:18px;max-width:620px}
+.buttons{display:flex;gap:12px;margin-top:28px} .btn{padding:13px 20px;border:1px solid #2b405c;border-radius:9px;color:#fff;text-decoration:none;font-weight:bold} .btn:hover{border-color:#62e5ff;color:#62e5ff} .primary{background:#62e5ff;color:#06111d!important;border-color:#62e5ff}
+.profile{display:flex;justify-content:center} .profile-box{width:min(420px,90%);height:500px;padding:12px;border:1px solid #62e5ff66;border-radius:28px;background:#ffffff08}
+.profile img{width:100%;height:100%;object-fit:cover;object-position:center top;border-radius:20px;display:block}
+.section{max-width:1200px;margin:auto;padding:95px 6%}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:65px;margin-top:30px} h2{font-size:clamp(38px,5vw,65px);line-height:1.05;letter-spacing:-3px} .about p{color:#9aaac0;margin-bottom:18px}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:35px}
+.service{border:1px solid #20334d;background:#0d192a;color:#fff;border-radius:18px;padding:30px;text-align:left;cursor:pointer;transition:.3s;min-height:230px}
+.service:hover,.service.active{transform:translateY(-6px);border-color:#62e5ff}
+.service .num{color:#62e5ff;font-weight:bold;font-size:11px;letter-spacing:2px}
+.service .icon{font-size:35px;margin:18px 0 5px} .service h3{font-size:24px} .service p{color:#9aaac0;font-size:13px;margin-top:8px} .click{display:block;color:#62e5ff;font-size:9px;letter-spacing:2px;margin-top:18px;font-weight:bold}
+.portfolio-panel{margin-top:30px;padding:30px;border:1px solid #29415e;border-radius:22px;background:#081524;transform-origin:top center}
+.portfolio-panel.panel-slide-in{animation:panelSlideIn .55s cubic-bezier(.2,.8,.2,1) both}
+.portfolio-panel.panel-slide-in .panel-head{animation:panelHeadIn .45s .08s both}
+.portfolio-panel.panel-slide-in .work-card{animation:workCardSlide .5s both;animation-delay:calc(.08s + var(--card-index, 0) * .07s)}
+@keyframes panelSlideIn{0%{opacity:0;transform:translateY(-28px) scale(.98)}60%{opacity:1;transform:translateY(5px) scale(1.005)}100%{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes panelHeadIn{0%{opacity:0;transform:translateX(-18px)}100%{opacity:1;transform:translateX(0)}}
+@keyframes workCardSlide{0%{opacity:0;transform:translateY(28px)}100%{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.portfolio-panel.panel-slide-in,.portfolio-panel.panel-slide-in .panel-head,.portfolio-panel.panel-slide-in .work-card{animation:none!important}}
+.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px} .panel-head h3{font-size:31px;margin-top:7px} .panel-head h3 span{color:#62e5ff}
+.close{background:transparent;color:#aebbd0;border:1px solid #29415e;padding:9px 14px;border-radius:8px;cursor:pointer} .close:hover{color:#62e5ff;border-color:#62e5ff}
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px} .work-card{overflow:hidden;background:#0d192a;border:1px solid #20334d;border-radius:15px} .work-img{height:310px;background:#fff} .work-img img{width:100%;height:100%;object-fit:cover;display:block;transition:.3s} .work-card:hover img{transform:scale(1.03)} .work-info{padding:17px} .work-info small{color:#62e5ff;font-size:9px;letter-spacing:1.5px} .work-info h3{font-size:18px;margin-top:5px}
+.model-content{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center} .cube-box{height:320px;display:flex;align-items:center;justify-content:center;border:1px solid #20334d;border-radius:18px;background:linear-gradient(145deg,#0d192a,#081524)}
+.cube{width:150px;height:150px;position:relative;transform:rotateX(-25deg) rotateY(35deg);transform-style:preserve-3d;animation:spin 7s linear infinite}
+.face{position:absolute;width:150px;height:150px;border:2px solid #62e5ff;background:#62e5ff18;display:flex;align-items:center;justify-content:center;color:#62e5ff;font-weight:bold}
+.front{transform:translateZ(75px)} .back{transform:rotateY(180deg) translateZ(75px)} .right{transform:rotateY(90deg) translateZ(75px)} .left{transform:rotateY(-90deg) translateZ(75px)} .top{transform:rotateX(90deg) translateZ(75px)} .bottom{transform:rotateX(-90deg) translateZ(75px)}
+@keyframes spin{from{transform:rotateX(-25deg) rotateY(0deg)}to{transform:rotateX(-25deg) rotateY(360deg)}}
+.model-text h3{font-size:35px;margin-bottom:12px} .model-text p{color:#9aaac0} .note{margin-top:18px;padding:14px;border-left:2px solid #62e5ff;color:#9aaac0;font-size:13px}
+.contact-box{display:grid;grid-template-columns:1fr 1fr;gap:60px;padding:50px;border:1px solid #29415e;border-radius:24px;background:#ffffff05} .contact-box h2{margin:18px 0} .contact-links{display:flex;flex-direction:column;justify-content:center;gap:14px} .contact-links a{padding:17px;border:1px solid #20334d;border-radius:12px;color:#fff;text-decoration:none} .contact-links a:hover{border-color:#62e5ff} .contact-links small{display:block;color:#62e5ff;font-size:9px;letter-spacing:2px}
+footer{border-top:1px solid #20334d;padding:25px 7%;display:flex;justify-content:space-between;color:#64748a;font-size:10px;letter-spacing:1px}
+[hidden]{display:none!important}
+@media(max-width:850px){.hero,.about,.model-content,.contact-box{grid-template-columns:1fr}.services,.work-grid{grid-template-columns:1fr}nav{display:none}.profile-box{height:450px}}
+@media(max-width:550px){.hero{padding-top:55px}h1{font-size:48px}.buttons{flex-direction:column}.btn{text-align:center}.section{padding:70px 6%}.work-img{height:380px}}
+
+/* ===== GALAXY BACKGROUND + EXTRA PORTFOLIO POLISH ===== */
+body{
+  background:
+    radial-gradient(circle at 15% 20%, rgba(98,229,255,.16), transparent 24%),
+    radial-gradient(circle at 85% 15%, rgba(181,23,255,.18), transparent 28%),
+    radial-gradient(circle at 55% 80%, rgba(67,97,238,.14), transparent 30%),
+    linear-gradient(135deg,#020611 0%,#071329 48%,#02030b 100%) !important;
+  background-attachment:fixed !important;
+  position:relative;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:-1; opacity:.65;
+  background-image:
+    radial-gradient(circle at 8% 18%,#fff 0 1px,transparent 1.6px),
+    radial-gradient(circle at 22% 72%,#fff 0 1px,transparent 1.6px),
+    radial-gradient(circle at 38% 32%,#fff 0 1px,transparent 1.6px),
+    radial-gradient(circle at 53% 14%,#fff 0 1px,transparent 1.6px),
+    radial-gradient(circle at 68% 64%,#fff 0 1px,transparent 1.6px),
+    radial-gradient(circle at 82% 28%,#fff 0 1px,transparent 1.6px),
+    radial-gradient(circle at 93% 82%,#fff 0 1px,transparent 1.6px);
+  background-size:240px 210px,310px 270px,380px 320px,290px 260px,340px 300px,280px 250px,420px 360px;
+  animation:starsDrift 18s linear infinite;
+}
+body::after{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:-2;
+  background:radial-gradient(ellipse at center,transparent 35%,rgba(0,0,0,.38) 100%);
+}
+@keyframes starsDrift{from{transform:translate3d(0,0,0)}50%{transform:translate3d(-10px,7px,0)}to{transform:translate3d(0,0,0)}}
+
+.hire-btn{
+  margin-left:10px; padding:10px 15px; border-radius:10px; text-decoration:none;
+  color:#fff; font-size:10px; font-weight:900; letter-spacing:1.5px;
+  border:1px solid transparent;
+  background:linear-gradient(#071426,#071426) padding-box,
+             linear-gradient(90deg,#ff1744,#ff8a00,#ffe600,#24e04b,#00d9ff,#4361ee,#b517ff,#ff1744) border-box;
+  background-size:auto,300% 100%; animation:hireRainbow 4s linear infinite;
+  box-shadow:0 0 14px rgba(0,217,255,.16); transition:.25s ease;
+}
+.hire-btn:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 0 24px rgba(181,23,255,.35)}
+@keyframes hireRainbow{to{background-position:0,300% 0}}
+
+.typewriter-text{
+  display:inline-block; overflow:hidden; white-space:nowrap; vertical-align:bottom;
+  border-right:2px solid currentColor; width:0;
+  animation:typeWrite 2.8s steps(14,end) .2s forwards, blinkCaret .7s step-end infinite;
+}
+@keyframes typeWrite{to{width:14ch}}
+@keyframes blinkCaret{50%{border-color:transparent}}
+.tag-rest{animation:tagGlow 3s ease-in-out infinite}
+@keyframes tagGlow{50%{filter:drop-shadow(0 0 8px rgba(0,217,255,.65))}}
+
+.category-title,.create-title{animation:sectionFloat 3.5s ease-in-out infinite}
+.category-title span,.create-title span{
+  background:linear-gradient(90deg,#ff1744,#ff8a00,#ffe600,#24e04b,#00d9ff,#4361ee,#b517ff,#ff1744);
+  background-size:300% 100%; -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:nameRainbow 4s linear infinite;
+}
+@keyframes sectionFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+.skills-section{position:relative}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px}
+.skill-card{position:relative;overflow:hidden;padding:22px 18px;border:1px solid #29415e;border-radius:16px;background:rgba(5,13,27,.72);backdrop-filter:blur(8px);transition:.3s ease}
+.skill-card::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent,rgba(0,217,255,.12),transparent);transform:translateX(-120%);transition:.5s ease}
+.skill-card:hover{transform:translateY(-6px);border-color:#00d9ff;box-shadow:0 0 22px rgba(0,217,255,.2)}
+.skill-card:hover::before{transform:translateX(120%)}
+.skill-card span{display:block;font-size:9px;letter-spacing:2px;color:#62e5ff;margin-bottom:10px}
+.skill-card strong{font-size:14px;line-height:1.4}
+.facebook-card strong{word-break:break-word}
+
+body.light-theme{
+  background:radial-gradient(circle at 15% 20%,rgba(0,217,255,.16),transparent 24%),radial-gradient(circle at 85% 15%,rgba(181,23,255,.13),transparent 28%),linear-gradient(135deg,#eaf4ff,#f8fbff 55%,#e8edff) !important;
+}
+body.light-theme::before{opacity:.25}
+body.light-theme .hire-btn{color:#172235;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(90deg,#ff1744,#ff8a00,#ffe600,#24e04b,#00d9ff,#4361ee,#b517ff,#ff1744) border-box}
+body.light-theme .skill-card{background:rgba(255,255,255,.8);border-color:#d2deeb;color:#172235}
+
+@media(max-width:850px){
+  .skills-grid{grid-template-columns:repeat(2,1fr)}
+  .hire-btn{position:absolute;right:125px;top:18px}
+}
+@media(max-width:550px){
+  .skills-grid{grid-template-columns:1fr}
+  .hire-btn{right:112px;padding:8px 10px;font-size:9px}
+  .typewriter-text{animation:typeWrite 2.8s steps(14,end) .2s forwards,blinkCaret .7s step-end infinite}
+}
+
+
+/* ===== ENHANCED MOVING GALAXY ===== */
+body::before{
+  opacity:.82 !important;
+  background-image:
+    radial-gradient(circle at 8% 18%,#fff 0 1px,transparent 1.7px),
+    radial-gradient(circle at 22% 72%,#fff 0 1px,transparent 1.7px),
+    radial-gradient(circle at 38% 32%,#fff 0 1px,transparent 1.7px),
+    radial-gradient(circle at 53% 14%,#fff 0 1px,transparent 1.7px),
+    radial-gradient(circle at 68% 64%,#fff 0 1px,transparent 1.7px),
+    radial-gradient(circle at 82% 28%,#fff 0 1px,transparent 1.7px),
+    radial-gradient(circle at 93% 82%,#fff 0 1px,transparent 1.7px),
+    radial-gradient(ellipse at 25% 55%,rgba(0,217,255,.16),transparent 34%),
+    radial-gradient(ellipse at 72% 42%,rgba(181,23,255,.18),transparent 38%),
+    radial-gradient(ellipse at 52% 72%,rgba(67,97,238,.14),transparent 30%);
+  background-size:240px 210px,310px 270px,380px 320px,290px 260px,340px 300px,280px 250px,420px 360px,100% 100%,100% 100%,100% 100%;
+  animation: galaxyStars 24s linear infinite;
+}
+body::after{
+  content:"" !important;
+  position:fixed !important; inset:-20% !important; pointer-events:none !important; z-index:-2 !important;
+  background:
+    radial-gradient(ellipse at 50% 48%,transparent 0 18%,rgba(255,255,255,.025) 28%,transparent 45%),
+    conic-gradient(from 20deg at 50% 50%,transparent 0deg,rgba(0,217,255,.06) 55deg,transparent 115deg,rgba(181,23,255,.07) 190deg,transparent 250deg,rgba(255,80,160,.045) 310deg,transparent 360deg);
+  filter:blur(18px);
+  opacity:.95;
+  animation:galaxySpin 28s linear infinite;
+}
+@keyframes galaxyStars{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-14px,10px,0) scale(1.025)}100%{transform:translate3d(0,0,0) scale(1)}}
+@keyframes galaxySpin{from{transform:rotate(0deg) scale(1)}to{transform:rotate(360deg) scale(1.06)}}
+
+/* Typewriter headings that replay every time the section enters the viewport */
+.type-scroll{display:inline-block;overflow:hidden;max-width:0;white-space:nowrap;border-right:2px solid #fff;opacity:.15;}
+.type-scroll.is-typing{opacity:1;max-width:100%;animation:scrollType 2.4s steps(34,end) forwards, caretBlink .65s step-end infinite;}
+.type-scroll.is-typing span{display:inline;background:linear-gradient(90deg,#ff1744,#ff8a00,#ffe600,#24e04b,#00d9ff,#4361ee,#b517ff,#ff1744);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:nameRainbow 4s linear infinite;}
+@keyframes scrollType{from{max-width:0}to{max-width:100%}}
+@keyframes caretBlink{50%{border-color:transparent}}
+@media(max-width:550px){.type-scroll.is-typing{animation:scrollType 2.8s steps(34,end) forwards,caretBlink .65s step-end infinite}}
+
+
+
+/* Added Graphic Design gallery: responsive thumbnails and reliable image display */
+.added-graphic-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:18px;margin-top:22px}
+.added-graphic-gallery .work-card{min-width:0;overflow:hidden}
+.added-graphic-gallery .work-img{width:100%;height:260px;overflow:hidden;background:#101d2d;display:flex;align-items:center;justify-content:center}
+.added-graphic-gallery .work-img img{display:block;width:100%;height:100%;object-fit:contain;max-width:100%}
+@media(max-width:600px){.added-graphic-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.added-graphic-gallery .work-img{height:190px}.added-graphic-gallery .work-info h3{font-size:14px}}
+
+</style>
+<style>
+.work-info .view-work{
+  margin-top:12px;
+  width:100%;
+  padding:10px 14px;
+  border:1px solid #62e5ff;
+  border-radius:10px;
+  background:transparent;
+  color:#62e5ff;
+  font:inherit;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:1.2px;
+  cursor:pointer;
+  transition:.2s ease;
+}
+.work-info .view-work:hover{
+  background:#62e5ff;
+  color:#081524;
+}
+.image-viewer{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:28px;
+  background:rgba(2,8,15,.94);
+}
+.image-viewer.open{display:flex}
+.image-viewer-content{
+  position:relative;
+  width:min(1100px,96vw);
+  height:min(90vh,900px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.image-viewer img{
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  border-radius:14px;
+  box-shadow:0 20px 80px rgba(0,0,0,.55);
+}
+.image-viewer-close{
+  position:absolute;
+  top:-8px;
+  right:-8px;
+  width:44px;
+  height:44px;
+  border:1px solid #62e5ff;
+  border-radius:50%;
+  background:#081524;
+  color:#fff;
+  font-size:20px;
+  cursor:pointer;
+}
+.image-viewer-title{
+  position:absolute;
+  left:0;
+  bottom:-38px;
+  color:#fff;
+  font-size:13px;
+  letter-spacing:.8px;
+}
+</style>
+<style>
+/* ADDED: Graphic Design software list and new portfolio work */
+.graphic-tools{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
+.graphic-tools span{display:inline-flex;align-items:center;padding:6px 9px;border:1px solid #29415e;border-radius:999px;background:#081524;color:#dce8f5;font-size:9px;font-weight:700;letter-spacing:.6px}
+.graphic-tools span::before{content:"◆";color:#62e5ff;margin-right:5px;font-size:7px}
+.graphic-work-badge{display:inline-block;margin-top:7px;padding:5px 8px;border:1px solid #29415e;border-radius:7px;color:#9aaac0;font-size:8px;letter-spacing:1px}
+</style>
+<style id="bertfolio-enhancements">
+/* ===== PROFILE ID CARD + RAINBOW FRAME ===== */
+.profile-box{
+  position:relative !important;
+  overflow:hidden !important;
+  cursor:pointer !important;
+  border:2px solid transparent !important;
+  background:
+    linear-gradient(#081524,#081524) padding-box,
+    conic-gradient(from 0deg,#ff1744,#ff8a00,#ffe600,#24e04b,#00d9ff,#4361ee,#b517ff,#ff1744) border-box !important;
+  box-shadow:0 0 12px rgba(0,217,255,.18),0 0 35px rgba(181,23,255,.12) !important;
+  animation:idCardEntrance 1s cubic-bezier(.2,.8,.2,1) both, rainbowGlow 5s linear infinite !important;
+}
+.profile-box::before{
+  content:"ID • DIGITAL ARTIST";
+  position:absolute;
+  left:22px;
+  top:20px;
+  z-index:3;
+  padding:6px 10px;
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:999px;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(8px);
+  color:#fff;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:1.5px;
+  pointer-events:none;
+}
+.profile-box::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  border-radius:26px;
+  background:linear-gradient(120deg,transparent 35%,rgba(255,255,255,.18) 50%,transparent 65%);
+  transform:translateX(-120%);
+  animation:idCardShine 4.5s ease-in-out 1.2s infinite;
+}
+.profile-box img{
+  position:relative !important;
+  z-index:1 !important;
+  opacity:1 !important;
+  visibility:visible !important;
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  object-position:center top !important;
+  border-radius:20px !important;
+  transition:transform .45s ease, filter .45s ease !important;
+}
+.profile-box:hover img{transform:scale(1.025)}
+.profile-box.clicked{
+  animation:idCardClick .72s cubic-bezier(.2,.85,.25,1), rainbowGlow 5s linear infinite !important;
+}
+@keyframes idCardEntrance{
+  0%{opacity:0;transform:translateY(90px) rotateX(18deg) scale(.92)}
+  70%{opacity:1;transform:translateY(-8px) rotateX(-2deg) scale(1.01)}
+  100%{opacity:1;transform:translateY(0) rotateX(0) scale(1)}
+}
+@keyframes idCardClick{
+  0%{transform:scale(1) rotate(0)}
+  25%{transform:scale(1.035) rotate(-1.5deg)}
+  50%{transform:scale(1.015) rotate(1.5deg)}
+  75%{transform:scale(1.025) rotate(-.7deg)}
+  100%{transform:scale(1) rotate(0)}
+}
+@keyframes rainbowGlow{
+  0%{box-shadow:0 0 10px #ff1744,0 0 26px rgba(255,23,68,.2)}
+  16%{box-shadow:0 0 10px #ff8a00,0 0 26px rgba(255,138,0,.2)}
+  33%{box-shadow:0 0 10px #ffe600,0 0 26px rgba(255,230,0,.2)}
+  50%{box-shadow:0 0 10px #24e04b,0 0 26px rgba(36,224,75,.2)}
+  66%{box-shadow:0 0 10px #00d9ff,0 0 26px rgba(0,217,255,.2)}
+  83%{box-shadow:0 0 10px #b517ff,0 0 26px rgba(181,23,255,.2)}
+  100%{box-shadow:0 0 10px #ff1744,0 0 26px rgba(255,23,68,.2)}
+}
+@keyframes idCardShine{
+  0%,55%,100%{transform:translateX(-120%)}
+  70%{transform:translateX(120%)}
+}
+
+/* ===== ANIMATED NAME: MOVES + RAINBOW COLOR ===== */
+.animated-name{
+  animation:nameFloat 3.2s ease-in-out infinite !important;
+  will-change:transform;
+}
+.animated-name span{
+  display:inline-block;
+  background:linear-gradient(90deg,#ff1744,#ff8a00,#ffe600,#24e04b,#00d9ff,#4361ee,#b517ff,#ff1744);
+  background-size:300% 100%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent !important;
+  animation:nameRainbow 4s linear infinite, namePulse 2s ease-in-out infinite;
+  text-shadow:none !important;
+}
+@keyframes nameFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+@keyframes nameRainbow{
+  to{background-position:300% 0}
+}
+@keyframes namePulse{
+  0%,100%{filter:drop-shadow(0 0 0 rgba(255,255,255,0))}
+  50%{filter:drop-shadow(0 0 9px rgba(0,217,255,.55))}
+}
+
+/* ===== GLOWING CATEGORY CARDS ===== */
+.service{
+  position:relative !important;
+  overflow:hidden !important;
+  transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease !important;
+}
+.service::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:inherit;
+  padding:2px;
+  background:conic-gradient(from 0deg,#ff1744,#ff8a00,#ffe600,#24e04b,#00d9ff,#4361ee,#b517ff,#ff1744);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:.45;
+  animation:cardRainbow 4s linear infinite;
+  pointer-events:none;
+}
+.service:hover,.service.active{
+  transform:translateY(-7px) !important;
+  box-shadow:0 0 22px rgba(0,217,255,.28),0 15px 35px rgba(0,0,0,.25) !important;
+}
+@keyframes cardRainbow{to{transform:rotate(360deg)}}
+
+/* ===== LIGHT / DARK MODE ===== */
+.theme-toggle{
+  margin-left:16px;
+  padding:9px 12px;
+  border:1px solid #29415e;
+  border-radius:999px;
+  background:#081524;
+  color:#fff;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.8px;
+  cursor:pointer;
+  transition:.25s ease;
+}
+.theme-toggle:hover{transform:translateY(-2px);border-color:#62e5ff;box-shadow:0 0 15px rgba(98,229,255,.25)}
+
+body.light-theme{
+  background:#eef5fb !important;
+  color:#172235 !important;
+}
+body.light-theme header{
+  background:rgba(238,245,251,.88) !important;
+  border-bottom-color:#cbd8e8 !important;
+}
+body.light-theme nav a{color:#40516a}
+body.light-theme .hero p,
+body.light-theme .about p,
+body.light-theme .model-text p{color:#52647b}
+body.light-theme .profile-box{background:#fff !important}
+body.light-theme .service,
+body.light-theme .work-card,
+body.light-theme .portfolio-panel,
+body.light-theme .contact-box{
+  background:#ffffff !important;
+  color:#172235 !important;
+  border-color:#d2deeb !important;
+}
+body.light-theme .service p,
+body.light-theme .work-info small,
+body.light-theme .work-info h3,
+body.light-theme .panel-head h3,
+body.light-theme .model-text h3{color:#172235}
+body.light-theme .btn{color:#172235}
+body.light-theme .graphic-tools span{
+  background:#f2f7fc;
+  color:#26384e;
+  border-color:#cbd8e8;
+}
+body.light-theme .theme-toggle{background:#fff;color:#172235;border-color:#b9c9dc}
+
+@media(max-width:850px){
+  .theme-toggle{position:absolute;right:5%;top:18px}
+  header{position:sticky}
+}
+@media(max-width:550px){
+  .profile-box{height:450px !important}
+  .animated-name{font-size:42px !important;letter-spacing:-2px !important}
+}
+</style>
+<style id="book-cover-enhancement">
+.book-cover-card .work-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
+.book-cover-card:hover .work-img img{
+  transform:scale(1.04);
+}
+</style>
+<style id="final-visual-fix">
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+/* Typography polish */
+body{font-family:'Inter',Arial,Helvetica,sans-serif;letter-spacing:.01em;overflow-x:hidden}
+h1,h2,h3,.logo,.tag,nav a,.btn,.hire-btn,.click,.panel-head{font-family:'Space Grotesk','Inter',Arial,sans-serif}
+h1.animated-name{font-weight:800;line-height:.94;letter-spacing:-.055em}
+h1.animated-name span{display:inline-block}
+
+/* VISIBLE MOVING GALAXY: the old negative z-index placed it behind the body background. */
+body{background:#02030b !important;position:relative;isolation:isolate}
+body::before{
+  content:"" !important;position:fixed !important;inset:0 !important;z-index:0 !important;pointer-events:none !important;
+  opacity:.9 !important;
+  background-image:
+    radial-gradient(circle at 5% 12%,rgba(255,255,255,.95) 0 1px,transparent 1.7px),
+    radial-gradient(circle at 16% 78%,rgba(255,255,255,.85) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 29% 34%,rgba(255,255,255,.9) 0 1.2px,transparent 1.9px),
+    radial-gradient(circle at 42% 9%,rgba(255,255,255,.8) 0 1px,transparent 1.7px),
+    radial-gradient(circle at 58% 68%,rgba(255,255,255,.9) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 73% 23%,rgba(255,255,255,.8) 0 1px,transparent 1.7px),
+    radial-gradient(circle at 88% 76%,rgba(255,255,255,.95) 0 1.2px,transparent 1.9px),
+    radial-gradient(circle at 96% 38%,rgba(255,255,255,.7) 0 1px,transparent 1.7px),
+    radial-gradient(ellipse at 28% 45%,rgba(0,217,255,.22),transparent 32%),
+    radial-gradient(ellipse at 72% 50%,rgba(181,23,255,.25),transparent 34%);
+  background-size:190px 170px,240px 210px,310px 260px,220px 190px,280px 240px,230px 200px,320px 270px,260px 230px,100% 100%,100% 100%;
+  animation:galaxyStarsMove 18s linear infinite !important;
+}
+body::after{
+  content:"" !important;position:fixed !important;inset:-25% !important;z-index:0 !important;pointer-events:none !important;
+  background:
+    radial-gradient(ellipse at 50% 50%,transparent 18%,rgba(0,217,255,.06) 30%,transparent 44%),
+    radial-gradient(ellipse at 50% 50%,transparent 28%,rgba(181,23,255,.08) 43%,transparent 58%),
+    conic-gradient(from 0deg at 50% 50%,transparent 0deg,rgba(0,217,255,.08) 55deg,transparent 120deg,rgba(181,23,255,.08) 200deg,transparent 275deg,rgba(255,60,150,.06) 330deg,transparent 360deg);
+  filter:blur(22px);opacity:.95 !important;animation:galaxyNebulaSpin 30s linear infinite !important;
+}
+body>header,body>section,body>footer{position:relative;z-index:1}
+@keyframes galaxyStarsMove{0%{background-position:0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0}50%{background-position:45px -30px,-55px 35px,35px 45px,-30px 25px,50px -40px,-40px -20px,35px 30px,-45px 25px,0 0,0 0}100%{background-position:90px -60px,-110px 70px,70px 90px,-60px 50px,100px -80px,-80px -40px,70px 60px,-90px 50px,0 0,0 0}}
+@keyframes galaxyNebulaSpin{from{transform:rotate(0deg) scale(1)}to{transform:rotate(360deg) scale(1.08)}}
+
+/* Restore / strengthen contact presentation */
+#contact{position:relative;z-index:1}
+.contact-box{font-family:'Inter',Arial,sans-serif;backdrop-filter:blur(12px);box-shadow:0 0 45px rgba(0,217,255,.07)}
+.contact-links a{transition:.25s ease;background:rgba(4,12,25,.45)}
+.contact-links a:hover{transform:translateX(5px);box-shadow:0 0 18px rgba(0,217,255,.16)}
+
+/* MY TOOLS — visual logos, not text-only tool names */
+.tools-section{position:relative;z-index:1}
+.tools-grid{display:grid;grid-template-columns:repeat(7,minmax(90px,1fr));gap:16px;margin-top:30px}
+.tool-logo-card{min-height:128px;border:1px solid #29415e;border-radius:18px;background:rgba(6,15,30,.72);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:.3s ease}
+.tool-logo-card::before{content:"";position:absolute;inset:-80%;background:conic-gradient(from 0deg,transparent,rgba(0,217,255,.12),transparent,rgba(181,23,255,.13),transparent);animation:toolSpin 8s linear infinite;opacity:.7}
+.tool-logo-card::after{content:"";position:absolute;inset:1px;border-radius:17px;background:rgba(6,15,30,.86)}
+.tool-logo-card:hover{transform:translateY(-7px) scale(1.02);border-color:#62e5ff;box-shadow:0 0 28px rgba(0,217,255,.18)}
+.tool-logo{position:relative;z-index:2;width:66px;height:66px;display:block;filter:drop-shadow(0 0 8px rgba(255,255,255,.12));transition:.3s ease}
+.tool-logo-card:hover .tool-logo{transform:scale(1.12) rotate(-2deg);filter:drop-shadow(0 0 13px rgba(0,217,255,.35))}
+@keyframes toolSpin{to{transform:rotate(360deg)}}
+body.light-theme .tool-logo-card{background:rgba(255,255,255,.78);border-color:#d2deeb}
+body.light-theme .tool-logo-card::after{background:rgba(255,255,255,.9)}
+@media(max-width:1000px){.tools-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:600px){.tools-grid{grid-template-columns:repeat(2,1fr)}.tool-logo-card{min-height:112px}.tool-logo{width:58px;height:58px}}
+</style>
+<style id="uploaded-tool-logo-fix">
+.uploaded-tool-logo{width:78px!important;height:78px!important;object-fit:contain;border-radius:14px;filter:drop-shadow(0 0 9px rgba(255,255,255,.12))}
+@media(max-width:600px){.uploaded-tool-logo{width:68px!important;height:68px!important}}
+.contact-links a strong{display:block;overflow-wrap:anywhere}
+</style>
+
+&gt;
+
+<style id="contact-layout-fix">
+.contact-box{display:grid!important;grid-template-columns:1fr!important;gap:32px!important}
+.contact-links{width:100%;display:flex!important;flex-direction:column!important;gap:14px!important}
+.contact-links a{width:100%;display:block!important}
+</style>
+<style id="welcome-shooting-star-final">
+/* Opening welcome screen */
+#welcomeIntro{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#02030b;pointer-events:none;animation:welcomeScreen 3.2s ease forwards;}
+.welcome-text{font-size:clamp(30px,6vw,78px);font-weight:900;letter-spacing:.08em;text-align:center;color:#fff;text-shadow:0 0 12px rgba(98,229,255,.75),0 0 36px rgba(181,23,255,.45);animation:welcomeText 3.2s ease forwards;padding:0 20px;}
+@keyframes welcomeText{0%{opacity:0;transform:scale(.92);filter:blur(8px)}18%{opacity:1;transform:scale(1);filter:blur(0)}62%{opacity:1}88%{opacity:0;transform:scale(1.04);filter:blur(3px)}100%{opacity:0}}
+@keyframes welcomeScreen{0%,68%{opacity:1}100%{opacity:0;visibility:hidden}}
+/* Reveal the name/photo after welcome fades */
+.hero>div{animation:heroReveal 1s ease 2.65s both;}
+@keyframes heroReveal{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+/* Remove the old framed/card treatment: show the supplied photo only */
+.profile-box{width:min(470px,100%) !important;height:auto !important;padding:0 !important;border:0 !important;border-radius:0 !important;background:transparent !important;box-shadow:none !important;overflow:visible !important;animation:none !important;cursor:default !important;}
+.profile-box::before,.profile-box::after{display:none !important;}
+.profile-box img{width:100% !important;height:auto !important;max-height:620px !important;object-fit:contain !important;object-position:center bottom !important;border-radius:0 !important;transform:none !important;filter:none !important;}
+.profile-box:hover img{transform:none !important;}
+/* Fast shooting stars across the page */
+.shooting-star{position:fixed;z-index:5;top:12vh;left:-180px;width:150px;height:2px;pointer-events:none;opacity:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),#fff);box-shadow:0 0 7px #fff,0 0 18px #62e5ff;transform:rotate(-28deg);animation:shootFast 2.4s linear infinite;}
+.shooting-star::after{content:"";position:absolute;right:0;top:-3px;width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 8px #fff,0 0 18px #62e5ff;}
+.shooting-star.s2{top:38vh;animation-delay:1.15s;animation-duration:2.05s;transform:rotate(-25deg) scale(.78);}
+.shooting-star.s3{top:68vh;animation-delay:2.05s;animation-duration:2.25s;transform:rotate(-30deg) scale(.62);}
+@keyframes shootFast{0%{left:-220px;opacity:0;transform:translateY(-20px) rotate(-28deg) scale(.8)}8%{opacity:1}86%{opacity:1}100%{left:115vw;opacity:0;transform:translateY(55vh) rotate(-28deg) scale(1)}}
+@media(max-width:550px){.profile-box{width:min(360px,94%) !important}.profile-box img{max-height:520px !important}.welcome-text{font-size:clamp(25px,8vw,42px);letter-spacing:.04em}}
+@media(prefers-reduced-motion:reduce){#welcomeIntro,.welcome-text,.hero>div,.shooting-star{animation:none!important}.shooting-star{display:none!important}#welcomeIntro{opacity:0;visibility:hidden}}
+</style>
+<style id="shooting-stars-clouds-final">
+/* ===== Cinematic shooting stars + drifting clouds ===== */
+.shooting-star{position:fixed;z-index:6;top:0;left:0;width:170px;height:3px;pointer-events:none;opacity:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.15) 35%,#fff 100%);border-radius:999px;box-shadow:0 0 7px #fff,0 0 18px #62e5ff,0 0 34px rgba(98,229,255,.7);transform-origin:100% 50%;animation:starFly 1.15s cubic-bezier(.2,.1,.3,1) infinite;}
+.shooting-star::after{content:"";position:absolute;right:-3px;top:50%;width:9px;height:9px;transform:translateY(-50%);border-radius:50%;background:#fff;box-shadow:0 0 8px #fff,0 0 20px #62e5ff,0 0 30px #fff;}
+.shooting-star.s2{top:20vh;animation-delay:.62s;animation-duration:1.25s;transform:rotate(-27deg)}
+.shooting-star.s3{top:43vh;animation-delay:1.35s;animation-duration:1.05s;transform:rotate(-27deg)}
+@keyframes starFly{
+  0%{transform:translate3d(-18vw,-8vh,0) rotate(-27deg) scale(.65);opacity:0}
+  8%{opacity:1}
+  72%{opacity:1}
+  100%{transform:translate3d(118vw,82vh,0) rotate(-27deg) scale(1.05);opacity:0}
+}
+/* Cloud bank stays around the bottom of the portrait, like the reference */
+.profile-box{position:relative!important;overflow:hidden!important;}
+.cloud-layer{position:absolute;left:-18%;right:-18%;bottom:-3%;height:34%;z-index:3;pointer-events:none;overflow:hidden;filter:blur(.15px);}
+.cloud{position:absolute;bottom:-18%;width:55%;height:55%;border-radius:50%;background:radial-gradient(ellipse at 50% 42%,rgba(255,255,255,.82) 0%,rgba(214,232,255,.48) 32%,rgba(130,170,220,.22) 58%,transparent 76%);filter:blur(7px);opacity:.82;}
+.cloud::before,.cloud::after{content:"";position:absolute;border-radius:50%;background:inherit;}
+.cloud::before{width:48%;height:85%;left:13%;bottom:13%;}
+.cloud::after{width:55%;height:105%;right:8%;bottom:7%;}
+.cloud.c1{left:-5%;animation:cloudDrift 10s ease-in-out infinite alternate;}
+.cloud.c2{left:28%;width:62%;height:62%;bottom:-24%;opacity:.7;animation:cloudDrift 13s ease-in-out -3s infinite alternate-reverse;}
+.cloud.c3{left:62%;width:52%;height:50%;bottom:-14%;opacity:.76;animation:cloudDrift 11s ease-in-out -6s infinite alternate;}
+.cloud.c4{left:15%;width:75%;height:38%;bottom:-22%;opacity:.45;animation:cloudDrift 16s ease-in-out -8s infinite alternate-reverse;}
+@keyframes cloudDrift{from{transform:translateX(-22px)}to{transform:translateX(32px)}}
+@media(max-width:550px){.shooting-star{width:115px}.cloud-layer{height:30%;bottom:-1%}.cloud{filter:blur(5px)}}
+</style>
+<style id="shooting-star-cloud-fix">
+/* FINAL MOTION FIX: natural shooting-star path — moves RIGHT while gently FALLING DOWN */
+.shooting-star{
+  position:fixed!important;
+  z-index:6!important;
+  left:0!important;
+  top:0!important;
+  width:165px!important;
+  height:2px!important;
+  opacity:0;
+  pointer-events:none;
+  border-radius:999px;
+  transform-origin:100% 50%;
+  background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.12) 42%,#fff 100%)!important;
+  box-shadow:0 0 6px #fff,0 0 14px #62e5ff,0 0 24px rgba(98,229,255,.45)!important;
+  animation:naturalStarFall 5.2s ease-in-out infinite!important;
+}
+.shooting-star::after{
+  content:"";
+  position:absolute;
+  right:-3px;
+  top:50%;
+  width:7px;
+  height:7px;
+  transform:translateY(-50%);
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 7px #fff,0 0 15px #62e5ff;
+}
+/* Each star follows the same down-right direction, with different timing/size. */
+.shooting-star.s2{animation-delay:1.8s!important;animation-duration:5.8s!important;transform:scale(.82)}
+.shooting-star.s3{animation-delay:3.5s!important;animation-duration:5.4s!important;transform:scale(.68)}
+@keyframes naturalStarFall{
+  0%{
+    opacity:0;
+    transform:translate3d(-12vw,-8vh,0) rotate(25deg) scale(.58);
+  }
+  10%{opacity:.9}
+  25%{opacity:1}
+  70%{opacity:1}
+  90%{opacity:.65}
+  100%{
+    opacity:0;
+    transform:translate3d(92vw,52vh,0) rotate(25deg) scale(1);
+  }
+}
+
+/* Soft moving clouds stay at the bottom of the portrait. */
+.profile-box{position:relative!important;overflow:hidden!important}
+.cloud-layer{
+  position:absolute!important;
+  left:-20%!important;
+  right:-20%!important;
+  bottom:-2%!important;
+  height:30%!important;
+  z-index:3!important;
+  pointer-events:none!important;
+  overflow:hidden!important;
+}
+.cloud{will-change:transform;filter:blur(7px)!important}
+.cloud.c1{animation:cloudMove1 11s ease-in-out infinite!important}
+.cloud.c2{animation:cloudMove2 14s ease-in-out infinite!important}
+.cloud.c3{animation:cloudMove3 12s ease-in-out infinite!important}
+.cloud.c4{animation:cloudMove4 17s ease-in-out infinite!important}
+@keyframes cloudMove1{0%,100%{transform:translateX(-35px)}50%{transform:translateX(25px)}}
+@keyframes cloudMove2{0%,100%{transform:translateX(30px)}50%{transform:translateX(-25px)}}
+@keyframes cloudMove3{0%,100%{transform:translateX(-25px)}50%{transform:translateX(35px)}}
+@keyframes cloudMove4{0%,100%{transform:translateX(35px)}50%{transform:translateX(-30px)}}
+@media(max-width:550px){
+  .shooting-star{width:115px!important}
+  .cloud-layer{height:27%!important}
+  .cloud{filter:blur(5px)!important}
+}
+</style>
+</head>
+<body>
+<div aria-label="Welcome to my portfolio" id="welcomeIntro">
+<div class="welcome-text">WELCOME PORTFOLIO WEBSITE</div>
+</div>
+<div class="shooting-star"></div><div class="shooting-star s2"></div><div class="shooting-star s3"></div>
+<header>
+<a class="logo" href="#home"><b>AB</b>TACALAN</a>
+<nav>
+<a href="#home">Introduction</a>
+<a href="#about">About</a>
+<a href="#portfolio">Portfolio</a>
+<a href="#skills">Skills</a>
+<a href="#tools">Tools</a>
+<a href="#contact">Contact</a>
+</nav>
+<a class="hire-btn" href="#contact">HIRE ME</a>
+<button aria-label="Toggle light and dark mode" class="theme-toggle" id="themeToggle" type="button">☀️ <span>LIGHT</span></button>
+</header>
+<section class="hero" id="home">
+<div>
+<div class="tag"><span aria-label="CREATIVE ARTIST • DESIGNER • 3D ARTIST" class="full-role-typewriter"></span></div>
+<h1 class="animated-name">HI! I'M <span>ANGELBERT P. TACALAN</span></h1>
+<p>Fresh graduate and creative artist focused on <strong>Digital Illustration, Graphic Design, and 3D Modeling.</strong></p>
+<div class="buttons"><a class="btn primary" href="#portfolio">Explore My Work ↗</a><a class="btn" href="#contact">Let's Connect</a></div>
+</div>
+<div class="profile"><div class="profile-box"><div aria-hidden="true" class="cloud-layer"><span class="cloud c1"></span><span class="cloud c2"></span><span class="cloud c3"></span><span class="cloud c4"></span></div><img alt="Angelbert P. Tacalan" src="assets/embedded_001.webp"/></div></div>
+</section>
+<section class="section" id="about">
+<div class="tag">01 / INTRODUCTION</div>
+<div class="about">
+<h2>CREATIVE,<br/><span>ARTIST.</span></h2>
+<div>
+<p>Hi! I’m <strong>Angelbert P. Tacalan</strong>, a fresh graduate in Digital Animation. I’m a creative and hardworking person who enjoys digital illustration, graphic design, and 3D modeling.</p>
+<p>I studied BS Entertainment Multimedia and Computing, Major in Digital Animation. I’m passionate about art, design, and learning new creative skills.</p>
+<p><strong>Personality:</strong> Creative, friendly, patient, hardworking, and willing to learn.</p>
+</div>
+</div>
+</section>
+<section class="section skills-section" id="skills">
+<div class="tag">MY SKILLS</div>
+<h2 class="skills-title type-scroll" style="margin-top:12px"><span>Creative Skills</span></h2>
+<div class="skills-grid">
+<div class="skill-card"><strong>Creative Thinking</strong></div>
+<div class="skill-card"><strong>Attention to Detail</strong></div>
+<div class="skill-card"><strong>Visual Communication</strong></div>
+<div class="skill-card"><strong>Concept Development</strong></div>
+<div class="skill-card"><strong>Time Management</strong></div>
+<div class="skill-card"><strong>Client Communication</strong></div>
+<div class="skill-card"><strong>Adaptability</strong></div>
+<div class="skill-card"><strong>Teamwork</strong></div>
+</div>
+</section>
+<section class="section tools-section" id="tools">
+<div class="tag">MY TOOLS</div>
+<h2 class="skills-title type-scroll" style="margin-top:12px"><span>CREATIVE SOFTWARE</span></h2>
+<div aria-label="Creative software tools" class="tools-grid">
+<div aria-label="Canva" class="tool-logo-card" title="Canva">
+<img alt="Canva logo" class="tool-logo uploaded-tool-logo" src="assets/embedded_002.webp"/></div>
+<div aria-label="Adobe Photoshop" class="tool-logo-card" title="Adobe Photoshop">
+<svg aria-label="Photoshop logo" class="tool-logo" role="img" viewbox="0 0 100 100"><rect fill="#001E36" height="86" rx="8" stroke="#31A8FF" stroke-width="4" width="86" x="7" y="7"></rect><text fill="#31A8FF" font-family="Arial,sans-serif" font-size="34" font-weight="800" x="17" y="68">Ps</text></svg>
+</div>
+<div aria-label="Adobe InDesign" class="tool-logo-card" title="Adobe InDesign">
+<svg aria-label="InDesign logo" class="tool-logo" role="img" viewbox="0 0 100 100"><rect fill="#49021F" height="86" rx="8" stroke="#FF3366" stroke-width="4" width="86" x="7" y="7"></rect><text fill="#FF3366" font-family="Arial,sans-serif" font-size="31" font-weight="800" x="17" y="68">Id</text></svg>
+</div>
+<div aria-label="Adobe Premiere Pro" class="tool-logo-card" title="Adobe Premiere Pro">
+<svg aria-label="Premiere Pro logo" class="tool-logo" role="img" viewbox="0 0 100 100"><rect fill="#16002B" height="86" rx="8" stroke="#9999FF" stroke-width="4" width="86" x="7" y="7"></rect><text fill="#9999FF" font-family="Arial,sans-serif" font-size="27" font-weight="800" x="13" y="68">Pr</text></svg>
+</div>
+<div aria-label="AutoCAD" class="tool-logo-card" title="AutoCAD">
+<svg aria-label="AutoCAD logo" class="tool-logo" role="img" viewbox="0 0 100 100"><path d="M50 7L91 86H73L64 68H36L27 86H9L50 7Z" fill="none" stroke="#E52521" stroke-linejoin="round" stroke-width="8"></path><path d="M43 54h14" stroke="#E52521" stroke-linecap="round" stroke-width="8"></path></svg>
+</div>
+<div aria-label="Maya" class="tool-logo-card" title="Maya">
+<img alt="Maya logo" class="tool-logo uploaded-tool-logo" src="assets/embedded_003.webp"/></div>
+<div aria-label="Clip Studio Paint" class="tool-logo-card" title="Clip Studio Paint">
+<img alt="Clip Studio Paint logo" class="tool-logo uploaded-tool-logo" src="assets/embedded_004.webp"/></div>
+<div aria-label="Adobe Illustrator" class="tool-logo-card" title="Adobe Illustrator">
+<svg aria-label="Illustrator logo" class="tool-logo" role="img" viewbox="0 0 100 100"><rect fill="#330000" height="86" rx="8" stroke="#FF9A00" stroke-width="4" width="86" x="7" y="7"></rect><text fill="#FF9A00" font-family="Arial,sans-serif" font-size="31" font-weight="800" x="18" y="68">Ai</text></svg>
+</div>
+</div>
+</section>
+<section class="section" id="portfolio">
+<div class="tag">02 / MY SERVICES</div>
+<h2 class="category-title type-scroll" style="margin-top:12px"><span>CHOOSE CATEGORY</span></h2>
+<div class="services">
+<button class="service" data-target="digitalPanel" type="button">
+<div class="num">01</div><div class="icon">🎨</div><h3>Digital Illustrator</h3>
+<p>Digital portraits, characters, concept art, and digital painting.</p><div class="graphic-tools"><span>Clip Studio Paint</span><span>ibisPaint</span></div><span class="click">CLICK TO VIEW WORK ↗</span>
+</button>
+<button class="service" data-target="graphicPanel" type="button">
+<div class="num">02</div><div class="icon">🎨</div><h3>Graphic Design</h3>
+<p>Logo, branding, visual design, and creative artwork.</p><div class="graphic-tools"><span>Adobe Photoshop</span><span>Canva</span><span>Adobe InDesign</span><span>Adobe Illustrator</span></div><span class="click">CLICK TO VIEW WORK ↗</span>
+</button>
+<button class="service" data-target="modelPanel" type="button">
+<div class="num">03</div><div class="icon">◇</div><h3>3D Modeling</h3>
+<p>3D modeling, 3D concepts, and digital 3D production.</p><div class="graphic-tools"><span>AutoCAD</span><span>Maya</span><span>Adobe Premiere</span><span>Adobe Animate</span></div><span class="click">CLICK TO VIEW ↗</span>
+</button>
+</div>
+<div class="portfolio-panel" hidden="" id="digitalPanel">
+<div class="panel-head"><div><div class="tag">DIGITAL ILLUSTRATOR</div><h3>Digital <span>Artwork</span></h3><div class="graphic-tools"><span>Clip Studio Paint</span><span>ibisPaint</span></div></div><button class="close" type="button">CLOSE ✕</button></div>
+<div class="work-grid">
+<article class="work-card">
+<div class="work-img"><img alt="Digital Portrait" src="assets/embedded_005.webp"/></div>
+<div class="work-info"><small>Portrait • Digital Painting</small><h3>Digital Portrait</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Fantasy Character" src="assets/embedded_006.webp"/></div>
+<div class="work-info"><small>Character Art</small><h3>Fantasy Character</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Concept Artwork" src="assets/embedded_007.webp"/></div>
+<div class="work-info"><small>Concept Art</small><h3>Concept Artwork</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Character Design 01" src="assets/embedded_008.webp"/></div>
+<div class="work-info"><small>Character Illustration</small><h3>Character Design 01</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Character Design 02" src="assets/embedded_009.webp"/></div>
+<div class="work-info"><small>Character Illustration</small><h3>Character Design 02</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Character Design 03" src="assets/embedded_010.webp"/></div>
+<div class="work-info"><small>Character Illustration</small><h3>Character Design 03</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Digital Portrait 02" src="assets/embedded_011.webp"/></div>
+<div class="work-info"><small>Digital Portrait</small><h3>Digital Portrait 02</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Digital Portrait 03" src="assets/embedded_012.webp"/></div>
+<div class="work-info"><small>Digital Portrait</small><h3>Digital Portrait 03</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Cloud Character Sheet" src="assets/embedded_013.webp"/></div>
+<div class="work-info"><small>Character Design • Turnaround • Clip Studio Paint / ibisPaint</small><h3>Cloud Character Sheet</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Cloud Character Poses" src="assets/embedded_014.webp"/></div>
+<div class="work-info"><small>Character Design • Expressions &amp; Poses • Clip Studio Paint / ibisPaint</small><h3>Cloud Character Poses</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Male Character Turnaround" src="assets/embedded_015.webp"/></div>
+<div class="work-info"><small>Character Design • Turnaround • Clip Studio Paint / ibisPaint</small><h3>Male Character Turnaround</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Masked Character Turnaround" src="assets/embedded_016.webp"/></div>
+<div class="work-info"><small>Character Design • Fantasy Character • Clip Studio Paint / ibisPaint</small><h3>Masked Character Turnaround</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Fantasy Character Concept" src="assets/embedded_017.webp"/></div>
+<div class="work-info"><small>Character Design • Concept Art • Clip Studio Paint / ibisPaint</small><h3>Fantasy Character Concept</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Fantasy Character Turnaround" src="assets/embedded_018.webp"/></div>
+<div class="work-info"><small>Character Design • Front / Side / Back • Clip Studio Paint / ibisPaint</small><h3>Fantasy Character Turnaround</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+
+
+
+
+
+
+
+
+
+
+<article class="work-card">
+<div class="work-img"><img alt="Digital Artwork — Garden Café" loading="lazy" src="assets/embedded_019.webp"/></div>
+<div class="work-info"><h4>Digital Artwork — Garden Café</h4><p>Original digital artwork by Angelbert P. Tacalan.</p></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Digital Artwork — Character Portrait" loading="lazy" src="assets/embedded_020.webp"/></div>
+<div class="work-info"><h4>Digital Artwork — Character Portrait</h4><p>Original digital artwork by Angelbert P. Tacalan.</p></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Digital Artwork — Character Design 01" loading="lazy" src="assets/embedded_021.webp"/></div>
+<div class="work-info"><h4>Digital Artwork — Character Design 01</h4><p>Original digital artwork by Angelbert P. Tacalan.</p></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Digital Artwork — Character Design 02" loading="lazy" src="assets/embedded_022.webp"/></div>
+<div class="work-info"><h4>Digital Artwork — Character Design 02</h4><p>Original digital artwork by Angelbert P. Tacalan.</p></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Digital Artwork — Character Design 03" loading="lazy" src="assets/embedded_023.webp"/></div>
+<div class="work-info"><h4>Digital Artwork — Character Design 03</h4><p>Original digital artwork by Angelbert P. Tacalan.</p></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Digital Artwork — Floral Portrait" loading="lazy" src="assets/embedded_024.webp"/></div>
+<div class="work-info"><h4>Digital Artwork — Floral Portrait</h4><p>Original digital artwork by Angelbert P. Tacalan.</p></div>
+</article>
+
+<article class="work-card">
+<div class="work-img"><img alt="Digital Illustration — Commission Open Sheet" src="assets/embedded_025.webp"/></div>
+<div class="work-info"><h4>Digital Artwork — Commission Open</h4><p>Original character illustration and commission information by Angelbert P. Tacalan.</p></div>
+</article>
+
+</div>
+<article class="work-card">
+<div class="work-img"><img src="assets/commission-open-poster.webp" alt="Digital Artwork — Commission Open" loading="lazy"></div>
+<div class="work-info"><small>Digital Illustrator</small><h3>Commission Open</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+</div>
+<div class="portfolio-panel" hidden="" id="graphicPanel">
+<div class="panel-head"><div><div class="tag">GRAPHIC DESIGN</div><h3>Graphic <span>Design Works</span></h3><div class="graphic-tools"><span>Adobe Photoshop</span><span>Canva</span><span>Adobe InDesign</span><span>Adobe Illustrator</span></div></div><button class="close" type="button">CLOSE ✕</button></div>
+<div class="work-grid">
+<article class="work-card">
+<div class="work-img"><img alt="Real Estate Property Flyer" src="assets/embedded_026.webp"/></div>
+<div class="work-info"><small>Graphic Design • Adobe Photoshop / Adobe InDesign / Adobe Illustrator</small><h3>Real Estate Property Flyer</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<!-- ADDED: User-provided logo work -->
+<article class="work-card">
+<div class="work-img"><img alt="Logo Design - Eleven Dotted Logo" src="assets/embedded_027.webp"/></div>
+<div class="work-info"><small>Graphic Design • Logo</small><h3>Eleven Dotted Logo</h3><span class="graphic-work-badge">LOGO DESIGN</span><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Logo Design - Eleven 11 Logo" src="assets/embedded_028.webp"/></div>
+<div class="work-info"><small>Graphic Design • Logo</small><h3>Eleven 11 Logo</h3><span class="graphic-work-badge">LOGO DESIGN</span><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="BISCAST / Academic Artwork" src="assets/embedded_029.webp"/></div>
+<div class="work-info"><small>Logo • Branding</small><h3>BISCAST / Academic Artwork</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Saldang" src="assets/embedded_030.webp"/></div>
+<div class="work-info"><small>Logo • Visual Design</small><h3>Saldang</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Annual Report &amp; Publication Design" src="assets/embedded_031.webp"/></div>
+<div class="work-info"><small>Graphic Design • InDesign / Photoshop</small><h3>Annual Report &amp; Publication Design</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Photoshop Portfolio Works" src="assets/embedded_032.webp"/></div>
+<div class="work-info"><small>Graphic Design • Photoshop</small><h3>Photoshop Portfolio Works</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Graphic &amp; Shirt Design Collection" src="assets/embedded_033.webp"/></div>
+<div class="work-info"><small>Graphic Design • Photoshop</small><h3>Graphic &amp; Shirt Design Collection</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+</div>
+<article class="work-card">
+<div class="work-img"><img alt="IRConTECs 2026 Evaluation Form" src="assets/embedded_034.webp"/></div>
+<div class="work-info"><small>Graphic Design</small><h3>IRConTECs 2026 Evaluation Form</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="IRConTECs 2026 Book of Abstract" src="assets/embedded_035.webp"/></div>
+<div class="work-info"><small>Graphic Design</small><h3>IRConTECs 2026 Book of Abstract</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="IRConTECs Certificate Template" src="assets/embedded_036.webp"/></div>
+<div class="work-info"><small>Graphic Design</small><h3>IRConTECs Certificate Template</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card added-graphic-work">
+<div class="work-img"><img alt="Research Journal Cover — Blue Edition" loading="lazy" src="assets/embedded_037.webp"/></div>
+<div class="work-info"><small>Graphic Design • Journal Cover</small><h3>Research Journal Cover — Blue Edition</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card added-graphic-work">
+<div class="work-img"><img alt="Research Journal Cover — Editorial Edition" loading="lazy" src="assets/embedded_038.webp"/></div>
+<div class="work-info"><small>Graphic Design • Publication Design</small><h3>Research Journal Cover — Editorial Edition</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card added-graphic-work">
+<div class="work-img"><img alt="Research Journal Cover — School Edition" loading="lazy" src="assets/embedded_039.webp"/></div>
+<div class="work-info"><small>Graphic Design • Publication Design</small><h3>Research Journal Cover — School Edition</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card added-graphic-work">
+<div class="work-img"><img alt="Vanuatu Natural Kava — Product Packaging" loading="lazy" src="assets/embedded_040.webp"/></div>
+<div class="work-info"><small>Graphic Design • Packaging Design</small><h3>Vanuatu Natural Kava — Product Packaging</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card added-graphic-work">
+<div class="work-img"><img alt="Vanuatu Natural Kava — Preparation Guide" loading="lazy" src="assets/embedded_041.webp"/></div>
+<div class="work-info"><small>Graphic Design • Packaging &amp; Instructional Design</small><h3>Vanuatu Natural Kava — Preparation Guide</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card added-graphic-work">
+<div class="work-img"><img alt="AB Monogram Logo" loading="lazy" src="assets/embedded_042.webp"/></div>
+<div class="work-info"><small>Graphic Design • Logo Design</small><h3>AB Monogram Logo</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card added-graphic-work">
+<div class="work-img"><img alt="RZM Photography Promotional Flyer" loading="lazy" src="assets/embedded_043.webp"/></div>
+<div class="work-info"><small>Graphic Design • Promotional Flyer</small><h3>RZM Photography Promotional Flyer</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card added-graphic-work">
+<div class="work-img"><img alt="San Mig Sugar-Free Coffee Advertisement" loading="lazy" src="assets/embedded_044.webp"/></div>
+<div class="work-info"><small>Graphic Design • Product Advertisement</small><h3>San Mig Sugar-Free Coffee Advertisement</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card added-graphic-work">
+<div class="work-img"><img alt="Jocelle’s Garden Tourist Inn — Contact Flyer" loading="lazy" src="assets/embedded_045.webp"/></div>
+<div class="work-info"><small>Graphic Design • Promotional Flyer</small><h3>Jocelle’s Garden Tourist Inn — Contact Flyer</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card added-graphic-work">
+<div class="work-img"><img alt="Jocelle’s Garden — Events Promotion" loading="lazy" src="assets/embedded_046.webp"/></div>
+<div class="work-info"><small>Graphic Design • Promotional Design</small><h3>Jocelle’s Garden — Events Promotion</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card added-graphic-work">
+<div class="work-img"><img alt="Jocelle’s Garden — Food Promotion" loading="lazy" src="assets/embedded_047.webp"/></div>
+<div class="work-info"><small>Graphic Design • Food Advertisement</small><h3>Jocelle’s Garden — Food Promotion</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article>
+<article class="work-card" style="--card-index:1">
+<div class="work-img"><img alt="W Café logo applied to a takeaway coffee cup mockup" loading="lazy" src="assets/embedded_048.webp"/></div>
+<div class="work-info"><small>Graphic Design</small><h3>W Café Cup Mockup</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article><article class="work-card" style="--card-index:2">
+<div class="work-img"><img alt="Circular W Café brand logo" loading="lazy" src="assets/embedded_049.webp"/></div>
+<div class="work-info"><small>Graphic Design</small><h3>W Café Logo</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article><article class="work-card" style="--card-index:3">
+<div class="work-img"><img alt="Gold Eighvé photography and films logo" loading="lazy" src="assets/embedded_050.webp"/></div>
+<div class="work-info"><small>Graphic Design</small><h3>Eighvé Photo and Films Logo</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article><article class="work-card" style="--card-index:4">
+<div class="work-img"><img alt="Minimal coffee cup icon design" loading="lazy" src="assets/embedded_051.webp"/></div>
+<div class="work-info"><small>Graphic Design</small><h3>Coffee Cup Icon</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article><article class="work-card" style="--card-index:5">
+<div class="work-img"><img alt="San Fernando Food Park logo displayed on outdoor signage" loading="lazy" src="assets/embedded_052.webp"/></div>
+<div class="work-info"><small>Graphic Design</small><h3>San Fernando Food Park Signage</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article><article class="work-card" style="--card-index:6">
+<div class="work-img"><img alt="San Fernando Food Park logo artwork" loading="lazy" src="assets/embedded_053.webp"/></div>
+<div class="work-info"><small>Graphic Design</small><h3>San Fernando Food Park Logo</h3><button class="view-work" type="button">VIEW IMAGE ↗</button></div>
+</article></div>
+<!-- ADDED: User's latest graphic design uploads, embedded directly so they work on GitHub Pages. -->
+<div class="work-grid added-graphic-gallery">
+</div>
+<div class="portfolio-panel" hidden="" id="modelPanel">
+<div class="panel-head"><div><div class="tag">3D MODELING</div><h3>3D <span>Modeling</span></h3><div class="graphic-tools"><span>AutoCAD</span><span>Maya</span><span>Adobe Premiere</span><span>Adobe Animate</span></div></div><button class="close" type="button">CLOSE ✕</button></div>
+<!-- 3D MODELING GALLERY: actual uploaded images embedded so they display on GitHub Pages. -->
+<div class="model-gallery" id="modelGallery">
+<div class="model-gallery-head"><div><div class="tag">MY 3D WORKS</div><h3>3D <span>Modeling Gallery</span></h3></div></div>
+<div class="work-grid model-work-grid">
+<article class="work-card">
+<div class="work-img"><img alt="Medieval Food Scene" loading="lazy" src="assets/embedded_054.webp"/></div>
+<div class="work-info"><small>3D ENVIRONMENT</small><h3>Medieval Food Scene</h3><button class="view-work" type="button">VIEW WORK ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Fantasy Interior" loading="lazy" src="assets/embedded_055.webp"/></div>
+<div class="work-info"><small>3D ENVIRONMENT</small><h3>Fantasy Interior</h3><button class="view-work" type="button">VIEW WORK ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Modern Kitchen — Close View" loading="lazy" src="assets/embedded_056.webp"/></div>
+<div class="work-info"><small>3D INTERIOR DESIGN</small><h3>Modern Kitchen — Close View</h3><button class="view-work" type="button">VIEW WORK ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Modern Kitchen — Wide View" loading="lazy" src="assets/embedded_057.webp"/></div>
+<div class="work-info"><small>3D INTERIOR DESIGN</small><h3>Modern Kitchen — Wide View</h3><button class="view-work" type="button">VIEW WORK ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Dragon Head — Front View" loading="lazy" src="assets/embedded_058.webp"/></div>
+<div class="work-info"><small>3D SCULPTING</small><h3>Dragon Head — Front View</h3><button class="view-work" type="button">VIEW WORK ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Dragon Head — Side View" loading="lazy" src="assets/embedded_059.webp"/></div>
+<div class="work-info"><small>3D SCULPTING</small><h3>Dragon Head — Side View</h3><button class="view-work" type="button">VIEW WORK ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Fantasy House — Front View" loading="lazy" src="assets/embedded_060.webp"/></div>
+<div class="work-info"><small>3D ENVIRONMENT</small><h3>Fantasy House — Front View</h3><button class="view-work" type="button">VIEW WORK ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Fantasy House — Side View" loading="lazy" src="assets/embedded_061.webp"/></div>
+<div class="work-info"><small>3D ENVIRONMENT</small><h3>Fantasy House — Side View</h3><button class="view-work" type="button">VIEW WORK ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Fantasy Crystal Sword" loading="lazy" src="assets/embedded_062.webp"/></div>
+<div class="work-info"><small>3D WEAPON MODEL</small><h3>Fantasy Crystal Sword</h3><button class="view-work" type="button">VIEW WORK ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Ice Creature Character" loading="lazy" src="assets/embedded_063.webp"/></div>
+<div class="work-info"><small>3D CHARACTER MODEL</small><h3>Ice Creature Character</h3><button class="view-work" type="button">VIEW WORK ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Modern Kitchen — Alternate View" loading="lazy" src="assets/embedded_064.webp"/></div>
+<div class="work-info"><small>3D INTERIOR DESIGN</small><h3>Modern Kitchen — Alternate View</h3><button class="view-work" type="button">VIEW WORK ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Modern Kitchen — Full Interior" loading="lazy" src="assets/embedded_065.webp"/></div>
+<div class="work-info"><small>3D INTERIOR DESIGN</small><h3>Modern Kitchen — Full Interior</h3><button class="view-work" type="button">VIEW WORK ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Male Character Model" loading="lazy" src="assets/embedded_066.webp"/></div>
+<div class="work-info"><small>3D CHARACTER MODEL</small><h3>Male Character Model</h3><button class="view-work" type="button">VIEW WORK ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Female Character Model" loading="lazy" src="assets/embedded_067.webp"/></div>
+<div class="work-info"><small>3D CHARACTER MODEL</small><h3>Female Character Model</h3><button class="view-work" type="button">VIEW WORK ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Architectural Visualization — Buildings" loading="lazy" src="assets/embedded_068.webp"/></div>
+<div class="work-info"><small>ARCHITECTURAL MODEL</small><h3>Architectural Visualization — Buildings</h3><button class="view-work" type="button">VIEW WORK ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Stylized Building Model" loading="lazy" src="assets/embedded_069.webp"/></div>
+<div class="work-info"><small>ARCHITECTURAL MODEL</small><h3>Stylized Building Model</h3><button class="view-work" type="button">VIEW WORK ↗</button></div>
+</article>
+<article class="work-card">
+<div class="work-img"><img alt="Female Character — Front, Side &amp; Back" loading="lazy" src="assets/embedded_070.webp"/></div>
+<div class="work-info"><small>3D CHARACTER MODEL</small><h3>Female Character — Front, Side &amp; Back</h3><button class="view-work" type="button">VIEW WORK ↗</button></div>
+</article>
+</div>
+</div>
+<style id="3d-modeling-gallery-style">
+.model-gallery{margin-top:30px;padding-top:8px}
+.model-gallery-head{margin-bottom:22px}
+.model-gallery-head h3{font-size:31px;margin-top:7px}
+.model-gallery-head h3 span{color:#62e5ff}
+.model-work-grid{grid-template-columns:repeat(3,1fr)}
+.model-work-grid .work-img{height:260px;background:#050b14}
+.model-work-grid .work-img img{object-fit:cover;object-position:center}
+.model-work-grid .work-info{min-height:110px}
+.model-work-grid .view-work{margin-top:12px;padding:8px 12px;border:1px solid #29415e;border-radius:8px;background:transparent;color:#62e5ff;font-size:9px;font-weight:bold;letter-spacing:1.5px;cursor:pointer}
+.model-work-grid .view-work:hover{border-color:#62e5ff;background:#62e5ff12}
+@media(max-width:850px){.model-work-grid{grid-template-columns:1fr}}
+</style>
+<!-- Added 3D Modeling Video: existing design/code is preserved; this block only adds the user's video. -->
+<div class="model-video-wrap" style="margin:28px 0 10px; padding:20px; border:1px solid rgba(255,255,255,.14); border-radius:18px; background:rgba(0,0,0,.18); box-shadow:0 14px 40px rgba(0,0,0,.22);">
+<div style="margin-bottom:14px;">
+<div class="tag">3D MODELING VIDEO</div>
+<h3 style="margin:6px 0 4px;">My 3D Modeling Work</h3>
+<p style="margin:0; opacity:.78;">Click the 3D Modeling card above to view the video.</p>
+</div>
+<div style="position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; border-radius:14px; background:#050505;">
+<iframe allow="autoplay; fullscreen" allowfullscreen="" src="https://drive.google.com/file/d/1YiTIBApFFnpZOjM_NHyx1OEttd5o7kSE/preview" style="position:absolute; inset:0; width:100%; height:100%; border:0;" title="Angel Bert Tacalan - 3D Modeling Video">
+</iframe>
+</div>
+<p style="margin:12px 0 0; font-size:.9rem; opacity:.7;">If the video does not appear, make sure the Google Drive file is set to <strong>Anyone with the link – Viewer</strong>.</p>
+</div>
+</div>
+</section>
+<section class="section" id="contact">
+<div class="contact-box">
+<div><div class="tag">03 / CONTACT</div><h2 class="create-title type-scroll"> <span>CONTACT INFORMATION.</span></h2><p style="color:#9aaac0">Open to creative opportunities, freelance projects, and collaborations.</p></div>
+<div class="contact-links">
+<a href="mailto:angelberttacalan87@gmail.com"><small>EMAIL</small><strong>angelberttacalan87@gmail.com</strong></a>
+<a href="tel:09070066796"><small>PHONE</small><strong>0907 006 6796</strong></a>
+<a class="facebook-card" href="#contact"><small>FACEBOOK</small><strong>ANGELBERT TACALAN</strong></a>
+<a class="instagram-card" href="#contact"><small>INSTAGRAM</small><strong>gel_nectixs</strong></a>
+</div>
+</div>
+</section>
+<footer><div>© 2026 ANGEL BERT P. TACALAN</div><div>DIGITAL ART • DESIGN • 3D</div></footer>
+<script>
+const buttons = document.querySelectorAll(".service");
+const panels = document.querySelectorAll(".portfolio-panel");
+
+buttons.forEach(button => {
+  button.addEventListener("click", () => {
+    const target = document.getElementById(button.dataset.target);
+    panels.forEach(panel => {
+      panel.hidden = true;
+      panel.classList.remove("panel-slide-in");
+    });
+    buttons.forEach(b => b.classList.remove("active"));
+    target.hidden = false;
+    target.classList.remove("panel-slide-in");
+    void target.offsetWidth;
+    target.classList.add("panel-slide-in");
+    target.querySelectorAll(".work-card").forEach((card, index) => {
+      card.style.setProperty("--card-index", index);
+    });
+    button.classList.add("active");
+    setTimeout(() => target.scrollIntoView({behavior:"smooth", block:"start"}), 80);
+  });
+});
+
+document.querySelectorAll(".close").forEach(close => {
+  close.addEventListener("click", () => {
+    const panel = close.closest(".portfolio-panel");
+    panel.hidden = true;
+    buttons.forEach(b => b.classList.remove("active"));
+    document.getElementById("portfolio").scrollIntoView({behavior:"smooth", block:"start"});
+  });
+});
+</script>
+<div aria-hidden="true" class="image-viewer" id="imageViewer">
+<div class="image-viewer-content">
+<button aria-label="Close image" class="image-viewer-close" id="imageViewerClose" type="button">×</button>
+<img alt="" id="imageViewerImg" src=""/>
+<div class="image-viewer-title" id="imageViewerTitle"></div>
+</div>
+</div>
+<script>
+(function(){
+  function initImageViewer(){
+    const viewer=document.getElementById('imageViewer');
+    const viewerImg=document.getElementById('imageViewerImg');
+    const viewerTitle=document.getElementById('imageViewerTitle');
+    const closeBtn=document.getElementById('imageViewerClose');
+    if(!viewer || !viewerImg || !closeBtn) return;
+
+    function openViewer(card){
+      const img=card ? card.querySelector('.work-img img') : null;
+      const title=card ? card.querySelector('.work-info h3') : null;
+      if(!img || !img.src) return;
+      viewerImg.src=img.src;
+      viewerImg.alt=img.alt || (title ? title.textContent.trim() : 'Portfolio image');
+      viewerTitle.textContent=title ? title.textContent.trim() : '';
+      viewer.classList.add('open');
+      viewer.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+    }
+    function closeViewer(){
+      viewer.classList.remove('open');
+      viewer.setAttribute('aria-hidden','true');
+      viewerImg.removeAttribute('src');
+      document.body.style.overflow='';
+    }
+
+    document.querySelectorAll('.work-card').forEach(card=>{
+      const button=card.querySelector('.view-work');
+      const image=card.querySelector('.work-img img');
+      if(button) button.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();openViewer(card);});
+      if(image){
+        image.style.cursor='zoom-in';
+        image.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();openViewer(card);});
+      }
+    });
+    closeBtn.addEventListener('click',closeViewer);
+    viewer.addEventListener('click',e=>{if(e.target===viewer) closeViewer();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape' && viewer.classList.contains('open')) closeViewer();});
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initImageViewer);
+  else initImageViewer();
+})();
+</script>
+<script id="scroll-typewriter-js">
+(function(){
+  const items = document.querySelectorAll('.type-scroll');
+  if(!items.length) return;
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.remove('is-typing');
+        void entry.target.offsetWidth;
+        entry.target.classList.add('is-typing');
+      } else {
+        entry.target.classList.remove('is-typing');
+      }
+    });
+  }, {threshold:0.35});
+  items.forEach(el=>observer.observe(el));
+})();
+</script>
+<script id="bertfolio-enhancement-js">
+(function(){
+  const profile=document.querySelector('.profile-box');
+  if(profile){
+    profile.addEventListener('click',function(){
+      this.classList.remove('clicked');
+      void this.offsetWidth;
+      this.classList.add('clicked');
+      setTimeout(()=>this.classList.remove('clicked'),760);
+    });
+  }
+
+  const toggle=document.getElementById('themeToggle');
+  if(toggle){
+    const saved=localStorage.getItem('bertfolio-theme');
+    if(saved==='light') document.body.classList.add('light-theme');
+
+    function updateThemeButton(){
+      const light=document.body.classList.contains('light-theme');
+      toggle.innerHTML=light ? '🌙 <span>DARK</span>' : '☀️ <span>LIGHT</span>';
+      toggle.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
+    }
+    updateThemeButton();
+
+    toggle.addEventListener('click',function(){
+      document.body.classList.toggle('light-theme');
+      localStorage.setItem('bertfolio-theme',
+        document.body.classList.contains('light-theme') ? 'light' : 'dark');
+      updateThemeButton();
+    });
+  }
+})();
+</script>
+<script id="full-role-typewriter-final">
+(function(){
+  function startRole(){
+    const el=document.querySelector('.full-role-typewriter');
+    if(!el || el.dataset.started==='1') return;
+    el.dataset.started='1';
+
+    const text='CREATIVE ARTIST • DESIGNER • 3D ARTIST';
+    let i=0;
+    el.textContent='';
+
+    function typeNext(){
+      if(i < text.length){
+        el.textContent += text.charAt(i++);
+        window.setTimeout(typeNext, 95);
+      }else{
+        el.classList.add('typing-done');
+      }
+    }
+    typeNext();
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',startRole);
+  }else{
+    startRole();
+  }
+})();
+</script>
+<style id="full-role-typewriter-final-style">
+.full-role-typewriter{
+  display:inline-block;
+  white-space:nowrap;
+  vertical-align:bottom;
+  border-right:3px solid currentColor;
+  padding-right:3px;
+}
+.full-role-typewriter.typing-done{
+  animation: roleCursorBlink .7s step-end infinite;
+}
+@keyframes roleCursorBlink{
+  50%{border-right-color:transparent}
+}
+</style>
+</body>
+</html>
